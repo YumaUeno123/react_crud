@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { postEvent } from '../actions'
 
-class EventsNew extends Component {
+class EventNew extends Component {
   constructor(props) {
     super(props)
     this.onSubmit = this.onSubmit.bind(this)
@@ -27,7 +27,7 @@ class EventsNew extends Component {
   }
 
   render() {
-    const { handleSubmit, pristine, submitting } = this.props
+    const { handleSubmit, pristine, submitting, invalid } = this.props
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         <div>
@@ -37,7 +37,7 @@ class EventsNew extends Component {
           <Field label="Body" name="body" type="text" component={this.renderField} />
         </div>
         <div>
-          <input type="submit" tvalue="submit" disabled={pristine || submitting} />
+          <input type="submit" tvalue="submit" disabled={pristine || submitting || invalid} />
           <Link to="/">Cancel</Link>
         </div>
       </form>
@@ -57,5 +57,5 @@ const validate = values => {
 const mapDispatchToProps = ({ postEvent })
 
 export default connect(null, mapDispatchToProps)(
-  reduxForm({ validate, form: 'eventNewForm' })(EventsNew)
+  reduxForm({ validate, form: 'eventNewForm' })(EventNew)
 )

@@ -9,7 +9,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 
 import EventIndex from './components/event_index'
-import EventsNew from './components/event_new'
+import EventNew from './components/event_new'
+import EventShow from './components/event_show'
 
 
 const store = createStore(reducer, applyMiddleware(thunk))
@@ -18,7 +19,8 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route path="/events/new" component={EventsNew} />
+        <Route path="/events/new" component={EventNew} />
+        <Route path="/events/:id" component={EventShow} />
         <Route path="/" component={EventIndex} />
       </Switch>
     </BrowserRouter>
